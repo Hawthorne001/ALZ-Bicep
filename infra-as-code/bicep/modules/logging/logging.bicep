@@ -187,6 +187,7 @@ var varCuaid = 'f8087c67-cc41-46b2-994d-66e4b661860d'
 resource resUserAssignedManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
   name: parUserAssignedManagedIdentityName
   location: parUserAssignedManagedIdentityLocation
+  tags: parTags
 }
 
 resource resAutomationAccount 'Microsoft.Automation/automationAccounts@2023-11-01' = {
@@ -217,7 +218,7 @@ resource resAutomationAccountLock 'Microsoft.Authorization/locks@2020-05-01' = i
   }
 }
 
-resource resLogAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
+resource resLogAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: parLogAnalyticsWorkspaceName
   location: parLogAnalyticsWorkspaceLocation
   tags: parLogAnalyticsWorkspaceTags
@@ -243,6 +244,7 @@ resource resLogAnalyticsWorkspaceLock 'Microsoft.Authorization/locks@2020-05-01'
 resource resDataCollectionRuleVMInsights 'Microsoft.Insights/dataCollectionRules@2021-04-01' = {
   name: parDataCollectionRuleVMInsightsName
   location: parLogAnalyticsWorkspaceLocation
+  tags: parTags
   properties: {
     description: 'Data collection rule for VM Insights'
     dataSources: {
@@ -311,6 +313,7 @@ resource resDataCollectionRuleVMInsightsLock 'Microsoft.Authorization/locks@2020
 resource resDataCollectionRuleChangeTracking 'Microsoft.Insights/dataCollectionRules@2021-04-01' = {
   name: parDataCollectionRuleChangeTrackingName
   location: parLogAnalyticsWorkspaceLocation
+  tags: parTags
   properties: {
     description: 'Data collection rule for CT.'
     dataSources: {
@@ -582,6 +585,7 @@ resource resDataCollectionRuleChangeTrackingLock 'Microsoft.Authorization/locks@
 resource resDataCollectionRuleMDFCSQL'Microsoft.Insights/dataCollectionRules@2021-04-01' = {
   name: parDataCollectionRuleMDFCSQLName
   location: parLogAnalyticsWorkspaceLocation
+  tags: parTags
   properties: {
     description: 'Data collection rule for Defender for SQL.'
     dataSources: {
@@ -595,6 +599,7 @@ resource resDataCollectionRuleMDFCSQL'Microsoft.Insights/dataCollectionRules@202
             'Microsoft-DefenderForSqlTelemetry'
             'Microsoft-DefenderForSqlScanEvents'
             'Microsoft-DefenderForSqlScanResults'
+            'Microsoft-SqlAtpStatus-DefenderForSql'
           ]
           extensionSettings: {
             enableCollectionOfSqlQueriesForSecurityResearch: true
@@ -618,6 +623,7 @@ resource resDataCollectionRuleMDFCSQL'Microsoft.Insights/dataCollectionRules@202
           'Microsoft-DefenderForSqlTelemetry'
           'Microsoft-DefenderForSqlScanEvents'
           'Microsoft-DefenderForSqlScanResults'
+          'Microsoft-SqlAtpStatus-DefenderForSql'
         ]
         destinations: [
           'Microsoft-DefenderForSQL-Dest'
@@ -674,7 +680,7 @@ resource resLogAnalyticsWorkspaceSolutionsLock 'Microsoft.Authorization/locks@20
   }
 }]
 
-resource resLogAnalyticsLinkedServiceForAutomationAccount 'Microsoft.OperationalInsights/workspaces/linkedServices@2020-08-01' = if (parLogAnalyticsWorkspaceLinkAutomationAccount) {
+resource resLogAnalyticsLinkedServiceForAutomationAccount 'Microsoft.OperationalInsights/workspaces/linkedServices@2023-09-01' = if (parLogAnalyticsWorkspaceLinkAutomationAccount) {
   parent: resLogAnalyticsWorkspace
   name: parLogAnalyticsLinkedServiceAutomationAccountName
   properties: {

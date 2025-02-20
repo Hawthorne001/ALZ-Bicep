@@ -15,6 +15,7 @@ parLandingZoneChildrenMgAlzDefaultsEnable | No       | Assign policies to Corp &
 parLandingZoneMgConfidentialEnable | No       | Assign policies to Confidential Corp and Online groups under Landing Zones.
 parLogAnalyticsWorkSpaceAndAutomationAccountLocation | No       | Location of Log Analytics Workspace & Automation Account.
 parLogAnalyticsWorkspaceResourceId | No       | Resource ID of Log Analytics Workspace.
+parLogAnalyticsWorkspaceResourceCategory | No       | Category of logs for supported resource logging for Log Analytics Workspace.
 parDataCollectionRuleVMInsightsResourceId | No       | Resource ID for VM Insights Data Collection Rule.
 parDataCollectionRuleChangeTrackingResourceId | No       | Resource ID for Change Tracking Data Collection Rule.
 parDataCollectionRuleMDFCSQLResourceId | No       | Resource ID for MDFC SQL Data Collection Rule.
@@ -25,6 +26,7 @@ parMsDefenderForCloudEmailSecurityContact | No       | Email address for Microso
 parDdosEnabled | No       | Enable/disable DDoS Network Protection. True enforces Enable-DDoS-VNET policy; false disables.
 parDdosProtectionPlanId | No       | Resource ID of the DDoS Protection Plan for Virtual Networks.
 parPrivateDnsResourceGroupId | No       | Resource ID of the Resource Group for Private DNS Zones. Empty to skip assigning the Deploy-Private-DNS-Zones policy.
+parPrivateDnsZonesLocation | No       | Location of Private DNS Zones.
 parPrivateDnsZonesNamesToAuditInCorp | No       | List of Private DNS Zones to audit under the Corp Management Group. This overwrites default values.
 parDisableAlzDefaultPolicies | No       | Disable all default ALZ policies.
 parDisableSlzDefaultPolicies | No       | Disable all default sovereign policies.
@@ -101,6 +103,14 @@ Location of Log Analytics Workspace & Automation Account.
 
 Resource ID of Log Analytics Workspace.
 
+### parLogAnalyticsWorkspaceResourceCategory
+
+![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
+
+Category of logs for supported resource logging for Log Analytics Workspace.
+
+- Default value: `allLogs`
+
 ### parDataCollectionRuleVMInsightsResourceId
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
@@ -168,6 +178,12 @@ Resource ID of the DDoS Protection Plan for Virtual Networks.
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
 Resource ID of the Resource Group for Private DNS Zones. Empty to skip assigning the Deploy-Private-DNS-Zones policy.
+
+### parPrivateDnsZonesLocation
+
+![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
+
+Location of Private DNS Zones.
 
 ### parPrivateDnsZonesNamesToAuditInCorp
 
@@ -265,6 +281,9 @@ Opt out of deployment telemetry.
         "parLogAnalyticsWorkspaceResourceId": {
             "value": ""
         },
+        "parLogAnalyticsWorkspaceResourceCategory": {
+            "value": "allLogs"
+        },
         "parDataCollectionRuleVMInsightsResourceId": {
             "value": ""
         },
@@ -293,6 +312,9 @@ Opt out of deployment telemetry.
             "value": ""
         },
         "parPrivateDnsResourceGroupId": {
+            "value": ""
+        },
+        "parPrivateDnsZonesLocation": {
             "value": ""
         },
         "parPrivateDnsZonesNamesToAuditInCorp": {
