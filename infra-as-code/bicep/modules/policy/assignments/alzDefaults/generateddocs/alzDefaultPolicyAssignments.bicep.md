@@ -15,6 +15,7 @@ parLandingZoneChildrenMgAlzDefaultsEnable | No       | Assign policies to Corp &
 parLandingZoneMgConfidentialEnable | No       | Assign policies to Confidential Corp and Online groups under Landing Zones.
 parLogAnalyticsWorkSpaceAndAutomationAccountLocation | No       | Location of Log Analytics Workspace & Automation Account.
 parLogAnalyticsWorkspaceResourceId | No       | Resource ID of Log Analytics Workspace.
+parLogAnalyticsWorkspaceResourceCategory | No       | Category of logs for supported resource logging for Log Analytics Workspace.
 parDataCollectionRuleVMInsightsResourceId | No       | Resource ID for VM Insights Data Collection Rule.
 parDataCollectionRuleChangeTrackingResourceId | No       | Resource ID for Change Tracking Data Collection Rule.
 parDataCollectionRuleMDFCSQLResourceId | No       | Resource ID for MDFC SQL Data Collection Rule.
@@ -22,15 +23,16 @@ parUserAssignedManagedIdentityResourceId | No       | Resource ID for User Assig
 parLogAnalyticsWorkspaceLogRetentionInDays | No       | Number of days to retain logs in Log Analytics Workspace.
 parAutomationAccountName | No       | Name of the Automation Account.
 parMsDefenderForCloudEmailSecurityContact | No       | Email address for Microsoft Defender for Cloud alerts.
-parDdosEnabled | No       | Enable/disable DDoS Network Protection. True enforces Enable-DDoS-VNET policy; false disables.
+parDdosEnabled | No       | Enable/disable DDoS Network Protection.
 parDdosProtectionPlanId | No       | Resource ID of the DDoS Protection Plan for Virtual Networks.
 parPrivateDnsResourceGroupId | No       | Resource ID of the Resource Group for Private DNS Zones. Empty to skip assigning the Deploy-Private-DNS-Zones policy.
+parPrivateDnsZonesLocation | No       | Location of Private DNS Zones.
 parPrivateDnsZonesNamesToAuditInCorp | No       | List of Private DNS Zones to audit under the Corp Management Group. This overwrites default values.
 parDisableAlzDefaultPolicies | No       | Disable all default ALZ policies.
 parDisableSlzDefaultPolicies | No       | Disable all default sovereign policies.
-parVmBackupExclusionTagName | No       | Tag name for excluding VMs from this policy’s scope.
-parVmBackupExclusionTagValue | No       | Tag value for excluding VMs from this policy’s scope. Comma-separated list for multiple values.
-parExcludedPolicyAssignments | No       | Names of policy assignments to exclude. Found in Assigning Policies documentation.
+parVmBackupExclusionTagName | No       | Tag name for excluding VMs from this policy scope.
+parVmBackupExclusionTagValue | No       | Tag value for excluding VMs from this policy scope.
+parExcludedPolicyAssignments | No       | Names of policy assignments to exclude.
 parTelemetryOptOut | No       | Opt out of deployment telemetry.
 
 ### parTopLevelManagementGroupPrefix
@@ -101,6 +103,14 @@ Location of Log Analytics Workspace & Automation Account.
 
 Resource ID of Log Analytics Workspace.
 
+### parLogAnalyticsWorkspaceResourceCategory
+
+![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
+
+Category of logs for supported resource logging for Log Analytics Workspace.
+
+- Default value: `allLogs`
+
 ### parDataCollectionRuleVMInsightsResourceId
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
@@ -153,7 +163,7 @@ Email address for Microsoft Defender for Cloud alerts.
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
-Enable/disable DDoS Network Protection. True enforces Enable-DDoS-VNET policy; false disables.
+Enable/disable DDoS Network Protection.
 
 - Default value: `True`
 
@@ -168,6 +178,12 @@ Resource ID of the DDoS Protection Plan for Virtual Networks.
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
 Resource ID of the Resource Group for Private DNS Zones. Empty to skip assigning the Deploy-Private-DNS-Zones policy.
+
+### parPrivateDnsZonesLocation
+
+![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
+
+Location of Private DNS Zones.
 
 ### parPrivateDnsZonesNamesToAuditInCorp
 
@@ -195,19 +211,19 @@ Disable all default sovereign policies.
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
-Tag name for excluding VMs from this policy’s scope.
+Tag name for excluding VMs from this policy scope.
 
 ### parVmBackupExclusionTagValue
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
-Tag value for excluding VMs from this policy’s scope. Comma-separated list for multiple values.
+Tag value for excluding VMs from this policy scope.
 
 ### parExcludedPolicyAssignments
 
 ![Parameter Setting](https://img.shields.io/badge/parameter-optional-green?style=flat-square)
 
-Names of policy assignments to exclude. Found in Assigning Policies documentation.
+Names of policy assignments to exclude.
 
 ### parTelemetryOptOut
 
@@ -265,6 +281,9 @@ Opt out of deployment telemetry.
         "parLogAnalyticsWorkspaceResourceId": {
             "value": ""
         },
+        "parLogAnalyticsWorkspaceResourceCategory": {
+            "value": "allLogs"
+        },
         "parDataCollectionRuleVMInsightsResourceId": {
             "value": ""
         },
@@ -293,6 +312,9 @@ Opt out of deployment telemetry.
             "value": ""
         },
         "parPrivateDnsResourceGroupId": {
+            "value": ""
+        },
+        "parPrivateDnsZonesLocation": {
             "value": ""
         },
         "parPrivateDnsZonesNamesToAuditInCorp": {
